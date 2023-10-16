@@ -73,8 +73,9 @@ const socialLinks = [
       const location = document.querySelector(target)?.offsetTop ?? 0;
       const headerHeight = header.getBoundingClientRect().height;
       let top = 0;
+      console.log(location);
 
-      if (headerHeight > 76) {
+      if (headerHeight > 88) {
         top = location;
       } else {
         top = location - headerHeight;
