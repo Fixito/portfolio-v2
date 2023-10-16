@@ -1,0 +1,49 @@
+---
+import { Icon } from "astro-icon";
+import jobifyImage from "../assets/screenshots/mern-jobify.png";
+import comfyStoreImage from "../assets/screenshots/react-comfy-store.png";
+import ProjectCard from "./ProjectCard.astro";
+
+const projects = [
+  {
+    title: "Jobify",
+    subtitle: "React, MongoDB, Express, Node.js",
+    description: "Job Search Platform",
+    image: jobifyImage,
+    link: "https://github.com/Fixito/mern-jobify",
+  },
+  {
+    title: "Comfy Store",
+    subtitle: "React, Tailwind, Redux Toolkit, React Query",
+    description: "E-commerce",
+    image: comfyStoreImage,
+    link: "https://github.com/Fixito/react-comfy-store",
+  },
+];
+---
+
+<section id="projects" class="bg-white dark:bg-gray-800">
+  <div class="container mx-auto px-5 py-10 text-center">
+    <div class="mb-12 flex w-full flex-col">
+      <Icon
+        pack="ri"
+        name="code-s-slash-fill"
+        class="mx-auto mb-4 inline-block h-10 text-indigo-600 dark:text-indigo-500"
+      />
+      <h1
+        class="mb-4 text-3xl font-medium text-gray-900 dark:text-white sm:text-4xl"
+      >
+        Mes projets
+      </h1>
+      <p
+        class="mx-auto text-base leading-relaxed text-gray-600 dark:text-gray-400"
+      >
+        Voici une sélection de mes projets qui m'ont permis de développer mes
+        compétences :
+      </p>
+    </div>
+    <div class="grid gap-6 sm:grid-cols-2">
+      {projects.map((project) => <ProjectCard {...project} />)}
+    </div>
+  </div>
+</section>

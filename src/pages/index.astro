@@ -1,0 +1,21 @@
+---
+import About from "../components/About.astro";
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+import Projects from "../components/Projects.astro";
+import Skills from "../components/Skills.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Thomas ROBERT | Dev Web & Formateur à Valenciennes"
+  description="Thomas, développeur web et formateur freelance à Valenciennes. Spécialisé en JavaScript, React et Node.js/Express. Découvrez mes services et projets."
+>
+  <main class="bg-gray-50 text-gray-500 dark:bg-gray-900 dark:text-gray-400">
+    <Navbar />
+    <About />
+    <Projects />
+    <Skills />
+    <Footer />
+  </main>
+</BaseLayout>

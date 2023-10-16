@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import Icon from "astro-icon";
+import heroImage from "../assets/images/thomas.jpg";
+---
+
+<section id="about" class="grid min-h-[calc(100vh-76px)] place-items-center">
+  <div class="container mx-auto grid items-center px-5 py-20 lg:grid-cols-2">
+    <div>
+      <h1
+        class="title-font mb-6 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
+      >
+        Salut, je suis Thomas !
+      </h1>
+      <p class="mb-10 text-lg leading-8 text-gray-600 dark:text-gray-400">
+        Depuis que j'ai plongé dans le monde du développement web en 2020, je
+        suis devenu accro à la création d'applications qui font la différence.
+        Que vous soyez une start-up en herbe ou une entreprise établie, je suis
+        votre homme pour tout ce qui est numérique. Quand je ne suis pas en
+        train de coder, vous me trouverez sûrement en train de soulever de la
+        fonte à la salle de sport. Curieux de nature, je suis toujours à la
+        recherche de nouveaux défis. Si vous cherchez quelqu'un qui peut
+        apporter de la valeur à votre équipe tout en gardant une ambiance cool,
+        n'hésitez pas à me contacter. J'ai hâte de collaborer avec vous !
+      </p>
+      <div class="flex items-center gap-x-4">
+        <a
+          href="mailto:thomas_3004@hotmail.fr"
+          class="inline-flex items-center rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-400"
+        >
+          Travailler avec moi
+        </a>
+        <a
+          href="#projects"
+          class="inline-flex items-center gap-x-1 text-sm font-semibold text-gray-900 dark:text-white"
+        >
+          Voir mes projets
+          <span aria-hidden="true">
+            <Icon pack="ri" name="arrow-right-line" class="h-6 w-6" />
+          </span>
+        </a>
+      </div>
+    </div>
+    <Image
+      class="hidden aspect-[2/3] w-full max-w-xs rounded-2xl object-cover lg:block lg:justify-self-center"
+      src={heroImage}
+      alt="Photo de Thomas."
+      width={400}
+    />
+  </div>
+</section>
