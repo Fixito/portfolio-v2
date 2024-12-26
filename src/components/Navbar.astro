@@ -39,7 +39,7 @@ const socialLinks = [
     >
       {navlinks.map((navlink) => <NavLink {...navlink} />)}
       <a
-        href="/thomas-robert-cv.pdf"
+        href="/cv-thomas-robert.pdf"
         class="p-1.5 font-medium leading-5 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white"
         title="Télécharger un CV"
         download>CV</a
@@ -73,7 +73,6 @@ const socialLinks = [
       const location = document.querySelector(target)?.offsetTop ?? 0;
       const headerHeight = header.getBoundingClientRect().height;
       let top = 0;
-      console.log(location);
 
       if (headerHeight > 88) {
         top = location;
