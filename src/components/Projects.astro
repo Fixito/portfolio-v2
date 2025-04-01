@@ -2,22 +2,33 @@
 import { Icon } from "astro-icon";
 import jobifyImage from "../assets/screenshots/mern-jobify.png";
 import comfyStoreImage from "../assets/screenshots/react-comfy-store.png";
+import restcountriesApiImage from "../assets/screenshots/rest-countries-api.png";
 import ProjectCard from "./ProjectCard.astro";
 
 const projects = [
   {
     title: "Jobify",
     subtitle: "React, MongoDB, Express, Node.js",
-    description: "Job Search Platform",
+    description:
+      "Une application MERN permettant de gérer des offres d'emploi avec authentification et tableau de bord.",
     image: jobifyImage,
     link: "https://github.com/Fixito/mern-jobify",
   },
   {
     title: "Comfy Store",
     subtitle: "React, Tailwind, Redux Toolkit, React Query",
-    description: "E-commerce",
+    description:
+      "Une boutique en ligne React avec gestion des produits, panier et authentification.",
     image: comfyStoreImage,
     link: "https://github.com/Fixito/react-comfy-store",
+  },
+  {
+    title: "Rest Countries API",
+    subtitle: "React, Typescript, Tailwind, Shadcn, React Query",
+    description:
+      "Une application React affichant des informations sur les pays via l'API REST Countries, avec recherche et filtrage.",
+    image: restcountriesApiImage,
+    link: "https://github.com/Fixito/rest-countries-api",
   },
 ];
 ---
