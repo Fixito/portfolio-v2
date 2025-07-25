@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon";
+
 import NavLink from "./NavLink.astro";
 import SocialLink from "./SocialLink.astro";
 
@@ -23,24 +24,24 @@ const socialLinks = [
 ---
 
 <header
-  class="top-0 z-20 bg-white text-gray-500 shadow dark:bg-gray-800 dark:text-gray-300 md:sticky md:shadow-md"
+  class="top-0 z-20 bg-white text-gray-500 shadow md:sticky md:shadow-md dark:bg-gray-800 dark:text-gray-300"
 >
   <div
     class="container mx-auto flex flex-col flex-wrap items-center p-5 md:flex-row"
   >
     <!-- BRAND -->
-    <div class="mb-4 font-medium text-gray-900 dark:text-white md:mb-0">
+    <div class="mb-4 font-medium text-gray-900 md:mb-0 dark:text-white">
       <a href="#about" class="text-xl">Thomas ROBERT</a>
     </div>
 
     <!-- NAV -->
     <nav
-      class="flex flex-wrap items-center justify-center gap-4 md:ml-4 md:mr-auto md:border-l md:border-gray-700 md:pl-4 dark:md:border-white"
+      class="flex flex-wrap items-center justify-center gap-4 md:mr-auto md:ml-4 md:border-l md:border-gray-700 md:pl-4 dark:md:border-white"
     >
       {navlinks.map((navlink) => <NavLink {...navlink} />)}
       <a
         href="/cv-thomas-robert.pdf"
-        class="p-1.5 font-medium leading-5 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white"
+        class="p-1.5 leading-5 font-medium hover:text-gray-700 dark:text-gray-300 dark:hover:text-white"
         title="Télécharger un CV"
         download>CV</a
       >
@@ -54,7 +55,7 @@ const socialLinks = [
     <!-- CONTACT -->
     <a
       href="mailto:thomas_3004@hotmail.fr"
-      class="inline-flex items-center gap-1 rounded-md p-1 px-3 py-2 font-medium leading-5 text-gray-900 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-900 dark:hover:text-white"
+      class="inline-flex items-center gap-1 rounded-md p-1 px-3 py-2 leading-5 font-medium text-gray-900 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-900 dark:hover:text-white"
     >
       Me contacter
       <Icon pack="ri" name="arrow-right-line" class="h-5 w-5" />
