@@ -1,0 +1,32 @@
+---
+import { Icon } from "astro-icon";
+
+import { projects } from "./projects";
+
+import ProjectCard from "./ProjectCard.astro";
+---
+
+<section id="projects" class="bg-secondary py-12">
+  <div class="mx-auto max-w-7xl px-6 text-center lg:px-8">
+    <div>
+      <Icon
+        pack="ri"
+        name="code-s-slash-fill"
+        class="text-primary mx-auto inline-block size-10"
+      />
+      <h2 class="text-foreground mt-4 text-3xl font-semibold sm:text-4xl">
+        Mes projets
+      </h2>
+      <p
+        class="text-secondary-foreground mx-auto mt-4 max-w-4xl text-base/5 text-balance"
+      >
+        Voici une sélection de mes projets qui m'ont permis de développer mes
+        compétences :
+      </p>
+    </div>
+
+    <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2">
+      {projects.map((project) => <ProjectCard {...project} />)}
+    </div>
+  </div>
+</section>

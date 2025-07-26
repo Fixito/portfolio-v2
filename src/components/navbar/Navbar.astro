@@ -1,14 +1,14 @@
 ---
-import { Icon } from 'astro-icon';
+import { Icon } from "astro-icon";
 
-import { navlinks, socialLinks } from './links';
+import { navlinks, socialLinks } from "./links";
 
-import MobileMenu from './MobileMenu.astro';
-import SocialLink from './SocialLink.astro';
+import MobileMenu from "./MobileMenu.astro";
+import SocialLink from "./SocialLink.astro";
 ---
 
 <header>
-  <nav class="bg-background shadow-sm">
+  <nav class="bg-background relative shadow-sm">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between gap-2">
         <div class="flex items-center sm:hidden">
@@ -44,7 +44,7 @@ import SocialLink from './SocialLink.astro';
           class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
         >
           <div class="flex shrink-0 items-center">
-            <span class="text-primary text-xl">Thomas ROBERT</span>
+            <span class="text-foreground text-xl">Thomas ROBERT</span>
           </div>
 
           <!-- NAV LINKS -->
@@ -92,42 +92,42 @@ import SocialLink from './SocialLink.astro';
 </header>
 
 <script>
-  const navLinks = document.querySelectorAll('[data-nav-link]');
-  const header = document.querySelector('header');
-  const mobileMenu = document.querySelector('#mobile-menu');
+  const navLinks = document.querySelectorAll("[data-nav-link]");
+  const header = document.querySelector("header");
+  const mobileMenu = document.querySelector("#mobile-menu");
   const mobileMenuButton = document.querySelector(
     "button[aria-controls='mobile-menu']",
   );
-  const mobileNavlinks = document.querySelectorAll('[data-mobile-nav-link]');
-  const menuIconClosed = document.querySelector('#menu-icon-closed');
-  const menuIconOpen = document.querySelector('#menu-icon-open');
+  const mobileNavlinks = document.querySelectorAll("[data-mobile-nav-link]");
+  const menuIconClosed = document.querySelector("#menu-icon-closed");
+  const menuIconOpen = document.querySelector("#menu-icon-open");
 
   const toggleMenuIcons = () => {
-    menuIconClosed.classList.toggle('hidden');
-    menuIconOpen.classList.toggle('hidden');
+    menuIconClosed.classList.toggle("hidden");
+    menuIconOpen.classList.toggle("hidden");
   };
 
-  mobileMenuButton.addEventListener('click', () => {
+  mobileMenuButton.addEventListener("click", () => {
     toggleMenuIcons();
-    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle("hidden");
     mobileMenuButton.setAttribute(
-      'aria-expanded',
-      mobileMenu.classList.contains('hidden') ? 'false' : 'true',
+      "aria-expanded",
+      mobileMenu.classList.contains("hidden") ? "false" : "true",
     );
   });
 
   mobileNavlinks.forEach((navLink) => {
-    navLink.addEventListener('click', () => {
+    navLink.addEventListener("click", () => {
       toggleMenuIcons();
-      mobileMenu.classList.add('hidden');
-      mobileMenuButton.setAttribute('aria-expanded', 'false');
+      mobileMenu.classList.add("hidden");
+      mobileMenuButton.setAttribute("aria-expanded", "false");
     });
   });
 
   navLinks.forEach((navLink) => {
-    navLink.addEventListener('click', (e) => {
+    navLink.addEventListener("click", (e) => {
       e.preventDefault();
-      const target = (e.currentTarget as HTMLElement).getAttribute('href');
+      const target = (e.currentTarget as HTMLElement).getAttribute("href");
       const location =
         (document.querySelector(target) as HTMLElement)?.offsetTop ?? 0;
       const headerHeight = header.getBoundingClientRect().height;

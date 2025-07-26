@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  link: string;
+  image: ImageMetadata;
+  subtitle: string;
+  title: string;
+  description: string;
+}
+
+const { link, image, subtitle, title, description } = Astro.props;
+---
+
+<div
+  class="has-[:focus]:border-ring has-[:focus]:ring-ring/50 aspect-video w-full rounded-xl border shadow-xs has-[:focus]:ring-[3px]"
+>
+  <div class="relative h-full">
+    <Image
+      alt="gallery"
+      class="absolute inset-0 block h-full w-full rounded-xl object-cover"
+      src={image}
+      width={800}
+      height={450}
+    />
+    <div
+      class="bg-card relative z-10 grid h-full w-full place-items-center rounded-xl p-4 opacity-0 transition-opacity hover:opacity-100 has-[:focus]:opacity-100"
+    >
+      <div class="space-y-2">
+        <p class="text-primary text-sm/6 font-medium tracking-widest">
+          {subtitle}
+        </p>
+        <h3 class="text-card-foreground text-lg font-medium">
+          <a href={link} target="_blank" class="outline-none">
+            <span class="absolute inset-0"></span>
+            {title}
+          </a>
+        </h3>
+        <p class="text-muted-foreground max-w-[65ch] text-sm text-pretty">
+          {description}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

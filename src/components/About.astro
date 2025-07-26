@@ -7,7 +7,7 @@ import heroImage from "@assets/images/me.webp";
 
 <section
   id="about"
-  class="grid min-h-[calc(100vh-64px)] items-center py-[8rem]"
+  class="bg-background grid min-h-[calc(100vh-64px)] items-center py-[8rem]"
 >
   <div
     class="mx-auto max-w-7xl px-6 lg:grid lg:grid-cols-2 lg:items-center lg:gap-8 lg:px-8"
@@ -27,13 +27,13 @@ import heroImage from "@assets/images/me.webp";
       <div class="mt-10 flex items-center gap-x-4">
         <a
           href="mailto:thomas_3004@hotmail.fr"
-          class="bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-ring rounded-md px-3.5 py-2.5 text-sm font-semibold shadow-xs focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+          class="bg-primary hover:bg-primary/90 focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs outline-none focus-visible:ring-[3px]"
         >
           Travailler avec moi
         </a>
         <a
           href="#projects"
-          class="text-secondary-foreground inline-flex items-center gap-x-1 text-sm/6 font-semibold"
+          class="text-secondary-foreground focus-visible:border-ring focus-visible:ring-ring/50 inline-flex items-center gap-x-1 text-sm/6 font-semibold outline-none focus-visible:ring-[3px]"
         >
           Voir mes projets
           <span aria-hidden="true">
@@ -43,7 +43,7 @@ import heroImage from "@assets/images/me.webp";
       </div>
     </div>
     <Image
-      class="mt-10 block w-full max-w-md rounded-2xl object-cover sm:mt-16 lg:mt-0 lg:justify-self-end"
+      class="mt-10 block w-full max-w-md rounded-lg object-cover sm:mt-16 lg:mt-0 lg:justify-self-end"
       src={heroImage}
       alt="Photo de Thomas."
       width={400}
