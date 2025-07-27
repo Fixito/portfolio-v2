@@ -1,0 +1,34 @@
+---
+const {
+  title,
+  description,
+  url = 'https://thomasrobert.netlify.app/',
+} = Astro.props;
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="generator" content={Astro.generator} />
+  <!-- HTML Meta Tags -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+
+  <meta name="viewport" content="width=device-width" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Facebook Meta Tags -->
+  <meta property="og:url" content={url} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content="" />
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary" />
+  <meta property="twitter:domain" content="thomasrobert.netlify.app" />
+  <meta property="twitter:url" content={url} />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content="" />
+</head>

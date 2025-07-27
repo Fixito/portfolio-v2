@@ -1,11 +1,12 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const title = 'Thomas ROBERT | Page Introuvable';
+const description =
+  "Page non trouvée sur le portfolio de Thomas ROBERT. Retournez à l'accueil pour découvrir mes projets.";
 ---
 
-<BaseLayout
-  title="Thomas ROBERT | Page Introuvable"
-  description="Page non trouvée sur le portfolio de Thomas ROBERT. Retournez à l'accueil pour découvrir mes projets."
->
+<BaseLayout title={title} description={description}>
   <main class="bg-background grid min-h-screen place-items-center">
     <div class="text-center">
       <p class="text-primary text-base font-semibold">404</p>

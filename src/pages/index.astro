@@ -6,9 +6,13 @@ import Footer from "@components/Footer.astro";
 import Navbar from "@components/navbar/";
 import Projects from "@components/projects-section";
 import Skills from "@components/skills-section";
+
+const title = "Thomas ROBERT | Développeur Full-Stack React/Node.js";
+const description =
+  "Développeur Full-Stack spécialisé React/Node.js à Valenciennes. Création d'applications web modernes et performantes pour entreprises.";
 ---
 
-<BaseLayout>
+<BaseLayout title={title} description={description}>
   <Navbar />
   <main>
     <About />
