@@ -1,0 +1,30 @@
+---
+import { Icon } from "astro-icon";
+
+interface Props {
+  icon: {
+    pack: string;
+    name: string;
+  };
+  title: string;
+  description: string;
+}
+
+const { icon, title, description } = Astro.props;
+---
+
+<div>
+  <Icon
+    pack={icon.pack}
+    name={icon.name}
+    class="text-primary mx-auto inline-block size-10"
+  />
+  <h2 class="text-foreground mt-4 text-3xl font-semibold sm:text-4xl">
+    {title}
+  </h2>
+  <p
+    class="text-secondary-foreground mx-auto mt-4 max-w-4xl text-base/5 text-balance"
+  >
+    {description}
+  </p>
+</div>

@@ -1,0 +1,22 @@
+---
+import { skills } from "./skills";
+
+import SectionHeader from "@components/SectionHeader.astro";
+import SkillItem from "./SkillItem.astro";
+---
+
+<section id="skills" class="py-12">
+  <div class="mx-auto max-w-7xl px-6 text-center lg:px-8">
+    <div class="mb-12 text-center">
+      <SectionHeader
+        title="Compétences & Technologies"
+        description="Voici une sélection de mes compétences et technologies :"
+        icon={{ pack: "heroicons-solid", name: "chip" }}
+      />
+
+      <div class="mt-6 flex flex-wrap">
+        {skills.map((skill) => <SkillItem skill={skill} />)}
+      </div>
+    </div>
+  </div>
+</section>
