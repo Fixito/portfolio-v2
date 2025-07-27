@@ -1,10 +1,15 @@
 ---
 import "../styles/global.css";
 
-const title = "Thomas ROBERT | Développeur Full-Stack React/Node.js";
+interface Props {
+  title?: string;
+  description?: string;
+}
 
-const description =
-  "Développeur Full-Stack spécialisé React/Node.js à Valenciennes. Création d'applications web modernes et performantes pour entreprises.";
+const {
+  title = "Thomas ROBERT | Développeur Full-Stack React/Node.js",
+  description = "Développeur Full-Stack spécialisé React/Node.js à Valenciennes. Création d'applications web modernes et performantes pour entreprises.",
+} = Astro.props;
 ---
 
 <!doctype html>
