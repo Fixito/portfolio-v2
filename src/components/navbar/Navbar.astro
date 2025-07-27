@@ -8,8 +8,12 @@ import SocialLink from "./SocialLink.astro";
 ---
 
 <header>
-  <nav class="bg-background relative shadow-sm">
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+  <nav
+    id="navigation"
+    class="bg-background relative shadow-sm"
+    aria-label="Navigation principale"
+  >
+    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between gap-2">
         <div class="flex items-center sm:hidden">
           <!-- Mobile menu button-->
@@ -17,6 +21,7 @@ import SocialLink from "./SocialLink.astro";
             type="button"
             aria-controls="mobile-menu"
             aria-expanded="false"
+            aria-label="Ouvrir le menu de navigation mobile"
             class="text-muted-foreground hover:bg-muted hover:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 relative inline-flex items-center justify-center rounded-md p-2 outline-none focus-visible:ring-[3px]"
           >
             <span class="absolute -inset-0.5"></span>
@@ -54,6 +59,8 @@ import SocialLink from "./SocialLink.astro";
                 navlinks.map(({ href, text }) => (
                   <a
                     href={href}
+                    data-nav-link
+                    aria-label={`Naviguer vers la section ${text.toLowerCase()}`}
                     class="text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 hover:bg-muted hover:text-accent-foreground rounded-md px-3 py-2 text-sm font-medium transition-colors outline-none focus-visible:ring-[3px]"
                   >
                     {text}
@@ -62,7 +69,7 @@ import SocialLink from "./SocialLink.astro";
               }
               <a
                 href="/cv-thomas-robert.pdf"
-                title="Télécharger un CV"
+                aria-label="Télécharger le CV de Thomas ROBERT au format PDF"
                 download
                 class="text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 hover:bg-muted hover:text-accent-foreground rounded-md px-3 py-2 text-sm font-medium transition-colors outline-none focus-visible:ring-[3px]"
                 >CV
@@ -77,10 +84,16 @@ import SocialLink from "./SocialLink.astro";
           <div class="shrink-0">
             <a
               href="mailto:thomas_3004@hotmail.fr"
+              aria-label="Envoyer un email à Thomas ROBERT pour me contacter"
               class="text-muted-foreground hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-ring/50 inline-flex gap-1.5 p-1 font-medium transition-colors outline-none focus-visible:ring-[3px]"
             >
               Me contacter
-              <Icon pack="ri" name="arrow-right-line" class="h-6 w-6" />
+              <Icon
+                pack="ri"
+                name="arrow-right-line"
+                class="h-6 w-6"
+                aria-hidden="true"
+              />
             </a>
           </div>
         </div>

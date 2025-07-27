@@ -1,5 +1,5 @@
 ---
-import { navlinks } from './links';
+import { navlinks } from "./links";
 ---
 
 <div id="mobile-menu" class="hidden sm:hidden">
@@ -8,6 +8,7 @@ import { navlinks } from './links';
       navlinks.map(({ href, text }) => (
         <a
           href={href}
+          aria-label={`Naviguer vers la section ${text.toLowerCase()}`}
           class="text-muted-foreground hover:bg-muted hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-ring/50 block rounded-md px-3 py-2 text-base font-medium outline-none focus-visible:ring-[3px]"
           data-mobile-nav-link
         >
@@ -17,7 +18,7 @@ import { navlinks } from './links';
     }
     <a
       href="/cv-thomas-robert.pdf"
-      title="Télécharger le CV"
+      aria-label="Télécharger le CV de Thomas ROBERT au format PDF"
       download
       class="text-muted-foreground hover:bg-muted hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-ring/50 block rounded-md px-3 py-2 text-sm font-medium outline-none focus-visible:ring-[3px]"
       >CV

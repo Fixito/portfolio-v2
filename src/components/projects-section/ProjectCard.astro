@@ -31,7 +31,13 @@ const { link, image, subtitle, title, description } = Astro.props;
           {subtitle}
         </p>
         <h3 class="text-card-foreground text-lg font-medium">
-          <a href={link} target="_blank" class="outline-none">
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Voir le projet ${title} sur GitHub (ouvre dans un nouvel onglet)`}
+            class="outline-none"
+          >
             <span class="absolute inset-0"></span>
             {title}
           </a>
