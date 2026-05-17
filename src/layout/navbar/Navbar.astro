@@ -4,6 +4,7 @@ import { Icon } from 'astro-icon/components';
 import { personal } from '@data/personal';
 import { navlinks } from './links';
 
+import CvLink from './CvLink.astro';
 import MobileMenu from './MobileMenu.astro';
 import SocialLink from './SocialLink.astro';
 ---
@@ -66,13 +67,7 @@ import SocialLink from './SocialLink.astro';
                   </a>
                 ))
               }
-              <a
-                href={personal.cvPath}
-                aria-label="Télécharger le CV de Thomas ROBERT au format PDF"
-                download
-                class="text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 hover:bg-muted hover:text-accent-foreground rounded-md px-3 py-2 text-sm font-medium transition-colors outline-none focus-visible:ring-[3px]"
-                >CV
-              </a>
+              <CvLink />
             </div>
           </div>
         </div>

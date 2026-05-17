@@ -1,6 +1,7 @@
 ---
-import { personal } from '@data/personal';
 import { navlinks } from './links';
+
+import CvLink from './CvLink.astro';
 ---
 
 <div id="mobile-menu" class="hidden sm:hidden">
@@ -17,12 +18,6 @@ import { navlinks } from './links';
         </a>
       ))
     }
-    <a
-      href={personal.cvPath}
-      aria-label="Télécharger le CV de Thomas ROBERT au format PDF"
-      download
-      class="text-muted-foreground hover:bg-muted hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-ring/50 block rounded-md px-3 py-2 text-sm font-medium outline-none focus-visible:ring-[3px]"
-      >CV
-    </a>
+    <CvLink class="block" />
   </div>
 </div>
