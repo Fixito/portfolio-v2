@@ -12,7 +12,7 @@ export const personal = {
     {
       url: 'https://www.linkedin.com/in/thomasrobert1/',
       icon: 'ri:linkedin-box-fill',
-      title: 'Linkedin',
+      title: 'LinkedIn',
     },
   ],
 };
