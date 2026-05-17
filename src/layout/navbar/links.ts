@@ -6,12 +6,12 @@ export const navlinks = [
 export const socialLinks = [
   {
     url: 'https://github.com/Fixito',
-    icon: { pack: 'ri', name: 'github-fill' },
+    icon: 'ri:github-fill',
     title: 'GitHub',
   },
   {
     url: 'https://www.linkedin.com/in/thomasrobert1/',
-    icon: { pack: 'ri', name: 'linkedin-box-fill' },
+    icon: 'ri:linkedin-box-fill',
     title: 'Linkedin',
   },
 ];

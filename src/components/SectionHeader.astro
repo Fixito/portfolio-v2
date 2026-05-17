@@ -1,11 +1,8 @@
 ---
-import { Icon } from "astro-icon";
+import { Icon } from 'astro-icon/components';
 
 interface Props {
-  icon: {
-    pack: string;
-    name: string;
-  };
+  icon: string;
   title: string;
   description: string;
 }
@@ -15,8 +12,7 @@ const { icon, title, description } = Astro.props;
 
 <div>
   <Icon
-    pack={icon.pack}
-    name={icon.name}
+    name={icon}
     class="text-primary mx-auto inline-block size-10"
     aria-hidden="true"
   />

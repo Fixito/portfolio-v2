@@ -1,10 +1,10 @@
 ---
-import { Icon } from "astro-icon";
+import { Icon } from 'astro-icon/components';
 
-import { navlinks, socialLinks } from "./links";
+import { navlinks, socialLinks } from './links';
 
-import MobileMenu from "./MobileMenu.astro";
-import SocialLink from "./SocialLink.astro";
+import MobileMenu from './MobileMenu.astro';
+import SocialLink from './SocialLink.astro';
 ---
 
 <header>
@@ -28,16 +28,14 @@ import SocialLink from "./SocialLink.astro";
             <span class="sr-only">Ouvrir le menu principal</span>
             <!-- Icon when menu is closed. -->
             <Icon
-              pack="ri"
-              name="menu-fill"
+              name="ri:menu-fill"
               aria-hidden="true"
               class="block size-6"
               id="menu-icon-closed"
             />
             <!-- Icon when menu is open. -->
             <Icon
-              pack="ri"
-              name="close-fill"
+              name="ri:close-fill"
               aria-hidden="true"
               class="hidden size-6"
               id="menu-icon-open"
@@ -89,8 +87,7 @@ import SocialLink from "./SocialLink.astro";
             >
               Me contacter
               <Icon
-                pack="ri"
-                name="arrow-right-line"
+                name="ri:arrow-right-line"
                 class="h-6 w-6"
                 aria-hidden="true"
               />
@@ -105,42 +102,42 @@ import SocialLink from "./SocialLink.astro";
 </header>
 
 <script>
-  const navLinks = document.querySelectorAll("[data-nav-link]");
-  const header = document.querySelector("header");
-  const mobileMenu = document.querySelector("#mobile-menu");
+  const navLinks = document.querySelectorAll('[data-nav-link]');
+  const header = document.querySelector('header')!;
+  const mobileMenu = document.querySelector('#mobile-menu')!;
   const mobileMenuButton = document.querySelector(
     "button[aria-controls='mobile-menu']",
-  );
-  const mobileNavlinks = document.querySelectorAll("[data-mobile-nav-link]");
-  const menuIconClosed = document.querySelector("#menu-icon-closed");
-  const menuIconOpen = document.querySelector("#menu-icon-open");
+  )!;
+  const mobileNavlinks = document.querySelectorAll('[data-mobile-nav-link]');
+  const menuIconClosed = document.querySelector('#menu-icon-closed')!;
+  const menuIconOpen = document.querySelector('#menu-icon-open')!;
 
   const toggleMenuIcons = () => {
-    menuIconClosed.classList.toggle("hidden");
-    menuIconOpen.classList.toggle("hidden");
+    menuIconClosed.classList.toggle('hidden');
+    menuIconOpen.classList.toggle('hidden');
   };
 
-  mobileMenuButton.addEventListener("click", () => {
+  mobileMenuButton.addEventListener('click', () => {
     toggleMenuIcons();
-    mobileMenu.classList.toggle("hidden");
+    mobileMenu.classList.toggle('hidden');
     mobileMenuButton.setAttribute(
-      "aria-expanded",
-      mobileMenu.classList.contains("hidden") ? "false" : "true",
+      'aria-expanded',
+      mobileMenu.classList.contains('hidden') ? 'false' : 'true',
     );
   });
 
   mobileNavlinks.forEach((navLink) => {
-    navLink.addEventListener("click", () => {
+    navLink.addEventListener('click', () => {
       toggleMenuIcons();
-      mobileMenu.classList.add("hidden");
-      mobileMenuButton.setAttribute("aria-expanded", "false");
+      mobileMenu.classList.add('hidden');
+      mobileMenuButton.setAttribute('aria-expanded', 'false');
     });
   });
 
   navLinks.forEach((navLink) => {
-    navLink.addEventListener("click", (e) => {
+    navLink.addEventListener('click', (e) => {
       e.preventDefault();
-      const target = (e.currentTarget as HTMLElement).getAttribute("href");
+      const target = (e.currentTarget as HTMLElement).getAttribute('href')!;
       const location =
         (document.querySelector(target) as HTMLElement)?.offsetTop ?? 0;
       const headerHeight = header.getBoundingClientRect().height;

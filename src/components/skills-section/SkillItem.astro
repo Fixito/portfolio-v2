@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon";
+import { Icon } from 'astro-icon/components';
 
 interface Props {
   skill: string;
@@ -10,8 +10,7 @@ const { skill } = Astro.props;
 <div class="w-full p-2 sm:w-1/2 md:w-1/3">
   <div class="bg-secondary flex h-full items-center rounded-md p-4 shadow-sm">
     <Icon
-      pack="heroicons-solid"
-      name="badge-check"
+      name="heroicons:check-badge-solid"
       class="text-primary mr-4 size-6 shrink-0"
       aria-hidden="true"
     />

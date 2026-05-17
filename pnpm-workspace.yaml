@@ -2,3 +2,15 @@ onlyBuiltDependencies:
   - '@tailwindcss/oxide'
   - esbuild
   - sharp
+overrides:
+  mdast-util-to-hast@>=13.0.0 <13.2.1: '>=13.2.1'
+  picomatch@<2.3.2: '>=2.3.2'
+  postcss@<8.5.10: '>=8.5.10'
+  rollup@>=4.0.0 <4.59.0: '>=4.59.0'
+  svgo@>=2.1.0 <2.8.1: '>=2.8.1'
+  tar@<7.5.7: '>=7.5.7'
+  tar@<7.5.8: '>=7.5.8'
+  tar@<=7.5.10: '>=7.5.11'
+  tar@<=7.5.2: '>=7.5.3'
+  tar@<=7.5.3: '>=7.5.4'
+  tar@<=7.5.9: '>=7.5.10'
