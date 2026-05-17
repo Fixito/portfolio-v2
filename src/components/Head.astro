@@ -1,8 +1,10 @@
 ---
+import { personal } from '@data/personal';
+
 const {
   title,
   description,
-  url = 'https://thomasrobert.netlify.app/',
+  url = personal.siteUrl,
 } = Astro.props;
 ---
 

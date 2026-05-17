@@ -1,7 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components';
 
-import { navlinks, socialLinks } from './links';
+import { personal } from '@data/personal';
+import { navlinks } from './links';
 
 import MobileMenu from './MobileMenu.astro';
 import SocialLink from './SocialLink.astro';
@@ -66,7 +67,7 @@ import SocialLink from './SocialLink.astro';
                 ))
               }
               <a
-                href="/cv-thomas-robert.pdf"
+                href={personal.cvPath}
                 aria-label="Télécharger le CV de Thomas ROBERT au format PDF"
                 download
                 class="text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 hover:bg-muted hover:text-accent-foreground rounded-md px-3 py-2 text-sm font-medium transition-colors outline-none focus-visible:ring-[3px]"
@@ -78,10 +79,10 @@ import SocialLink from './SocialLink.astro';
 
         <!-- SOCIAL LINKS -->
         <div class="flex items-center">
-          {socialLinks.map((socialLink) => <SocialLink {...socialLink} />)}
+          {personal.socialLinks.map((socialLink) => <SocialLink {...socialLink} />)}
           <div class="shrink-0">
             <a
-              href="mailto:thomas_3004@hotmail.fr"
+              href={`mailto:${personal.email}`}
               aria-label="Envoyer un email à Thomas ROBERT pour me contacter"
               class="text-muted-foreground hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-ring/50 inline-flex gap-1.5 p-1 font-medium transition-colors outline-none focus-visible:ring-[3px]"
             >

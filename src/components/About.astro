@@ -2,6 +2,7 @@
 import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
 
+import { personal } from '@data/personal';
 import heroImage from '@assets/images/me.webp';
 ---
 
@@ -26,7 +27,7 @@ import heroImage from '@assets/images/me.webp';
       </p>
       <div class="mt-10 flex items-center gap-x-4">
         <a
-          href="mailto:thomas_3004@hotmail.fr"
+          href={`mailto:${personal.email}`}
           aria-label="Envoyer un email à Thomas ROBERT pour travailler ensemble"
           class="bg-primary hover:bg-primary/90 focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs outline-none focus-visible:ring-[3px]"
         >
