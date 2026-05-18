@@ -1,11 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components';
 
-interface Props {
-  icon: string;
-  title: string;
-  description: string;
-}
+import type { SectionMeta } from '@data/types';
+
+type Props = SectionMeta;
 
 const { icon, title, description } = Astro.props;
 ---

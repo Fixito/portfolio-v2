@@ -1,8 +1,10 @@
 ---
 import { Icon } from 'astro-icon/components';
 
-import { navlinks, socialLinks } from './links';
+import { personal } from '@data/personal';
+import { navlinks } from './links';
 
+import CvLink from './CvLink.astro';
 import MobileMenu from './MobileMenu.astro';
 import SocialLink from './SocialLink.astro';
 ---
@@ -15,39 +17,13 @@ import SocialLink from './SocialLink.astro';
   >
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between gap-2">
-        <div class="flex items-center sm:hidden">
-          <!-- Mobile menu button-->
-          <button
-            type="button"
-            aria-controls="mobile-menu"
-            aria-expanded="false"
-            aria-label="Ouvrir le menu de navigation mobile"
-            class="text-muted-foreground hover:bg-muted hover:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 relative inline-flex items-center justify-center rounded-md p-2 outline-none focus-visible:ring-[3px]"
-          >
-            <span class="absolute -inset-0.5"></span>
-            <span class="sr-only">Ouvrir le menu principal</span>
-            <!-- Icon when menu is closed. -->
-            <Icon
-              name="ri:menu-fill"
-              aria-hidden="true"
-              class="block size-6"
-              id="menu-icon-closed"
-            />
-            <!-- Icon when menu is open. -->
-            <Icon
-              name="ri:close-fill"
-              aria-hidden="true"
-              class="hidden size-6"
-              id="menu-icon-open"
-            />
-          </button>
-        </div>
+        <MobileMenu />
 
         <div
           class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
         >
           <div class="flex shrink-0 items-center">
-            <span class="text-foreground text-xl">Thomas ROBERT</span>
+            <span class="text-foreground text-xl">{personal.name}</span>
           </div>
 
           <!-- NAV LINKS -->
@@ -65,24 +41,18 @@ import SocialLink from './SocialLink.astro';
                   </a>
                 ))
               }
-              <a
-                href="/cv-thomas-robert.pdf"
-                aria-label="Télécharger le CV de Thomas ROBERT au format PDF"
-                download
-                class="text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 hover:bg-muted hover:text-accent-foreground rounded-md px-3 py-2 text-sm font-medium transition-colors outline-none focus-visible:ring-[3px]"
-                >CV
-              </a>
+              <CvLink />
             </div>
           </div>
         </div>
 
         <!-- SOCIAL LINKS -->
         <div class="flex items-center">
-          {socialLinks.map((socialLink) => <SocialLink {...socialLink} />)}
+          {personal.socialLinks.map((socialLink) => <SocialLink {...socialLink} />)}
           <div class="shrink-0">
             <a
-              href="mailto:thomas_3004@hotmail.fr"
-              aria-label="Envoyer un email à Thomas ROBERT pour me contacter"
+              href={`mailto:${personal.email}`}
+              aria-label={`Envoyer un email à ${personal.name} pour me contacter`}
               class="text-muted-foreground hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-ring/50 inline-flex gap-1.5 p-1 font-medium transition-colors outline-none focus-visible:ring-[3px]"
             >
               Me contacter
@@ -96,43 +66,12 @@ import SocialLink from './SocialLink.astro';
         </div>
       </div>
     </div>
-
-    <MobileMenu />
   </nav>
 </header>
 
 <script>
   const navLinks = document.querySelectorAll('[data-nav-link]');
   const header = document.querySelector('header')!;
-  const mobileMenu = document.querySelector('#mobile-menu')!;
-  const mobileMenuButton = document.querySelector(
-    "button[aria-controls='mobile-menu']",
-  )!;
-  const mobileNavlinks = document.querySelectorAll('[data-mobile-nav-link]');
-  const menuIconClosed = document.querySelector('#menu-icon-closed')!;
-  const menuIconOpen = document.querySelector('#menu-icon-open')!;
-
-  const toggleMenuIcons = () => {
-    menuIconClosed.classList.toggle('hidden');
-    menuIconOpen.classList.toggle('hidden');
-  };
-
-  mobileMenuButton.addEventListener('click', () => {
-    toggleMenuIcons();
-    mobileMenu.classList.toggle('hidden');
-    mobileMenuButton.setAttribute(
-      'aria-expanded',
-      mobileMenu.classList.contains('hidden') ? 'false' : 'true',
-    );
-  });
-
-  mobileNavlinks.forEach((navLink) => {
-    navLink.addEventListener('click', () => {
-      toggleMenuIcons();
-      mobileMenu.classList.add('hidden');
-      mobileMenuButton.setAttribute('aria-expanded', 'false');
-    });
-  });
 
   navLinks.forEach((navLink) => {
     navLink.addEventListener('click', (e) => {

@@ -1,9 +1,19 @@
 ---
+import { personal } from '@data/personal';
+
+interface Props {
+  title: string;
+  description: string;
+  url?: string;
+}
+
 const {
   title,
   description,
-  url = 'https://thomasrobert.netlify.app/',
+  url = personal.siteUrl,
 } = Astro.props;
+
+const twitterDomain = new URL(personal.siteUrl).hostname;
 ---
 
 <head>
@@ -22,13 +32,11 @@ const {
   <meta property="og:type" content="website" />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
-  <meta property="og:image" content="" />
 
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary" />
-  <meta property="twitter:domain" content="thomasrobert.netlify.app" />
+  <meta property="twitter:domain" content={twitterDomain} />
   <meta property="twitter:url" content={url} />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content="" />
 </head>

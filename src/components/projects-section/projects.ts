@@ -1,9 +1,28 @@
+import type { ImageMetadata } from 'astro';
+
 import comfyStoreImage from '@assets/screenshots/react-comfy-store.webp';
 import jobifyImage from '@assets/screenshots/mern-jobify.webp';
 import onlyMustImage from '@assets/screenshots/only-must.webp';
 import restcountriesApiImage from '@assets/screenshots/rest-countries-api.webp';
 
-export const projects = [
+import type { SectionMeta } from '@data/types';
+
+export type Project = {
+  title: string;
+  subtitle: string;
+  description: string;
+  image: ImageMetadata;
+  link: string;
+};
+
+export const sectionMeta: SectionMeta = {
+  title: 'Mes projets',
+  description:
+    "Voici une sélection de mes projets qui m'ont permis de développer mes compétences :",
+  icon: 'ri:code-s-slash-fill',
+};
+
+export const projects: Project[] = [
   {
     title: 'OnlyMust',
     subtitle: 'TanStack Start, React Query, PostgreSQL, Express, Drizzle',

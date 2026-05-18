@@ -1,11 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components';
 
-interface Props {
-  url: string;
-  icon: string;
-  title: string;
-}
+import type { SocialLink } from '@data/types';
+
+type Props = SocialLink;
 
 const { url, icon, title } = Astro.props;
 ---
@@ -18,5 +16,4 @@ const { url, icon, title } = Astro.props;
   class="text-muted-foreground hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-ring/50 p-1 transition-colors outline-none focus-visible:ring-[3px]"
 >
   <Icon name={icon} class="h-6 w-6" aria-hidden="true" />
-  <span class="sr-only">Consulter mon profil {title}</span>
 </a>
