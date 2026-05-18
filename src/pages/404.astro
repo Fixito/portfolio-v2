@@ -1,9 +1,10 @@
 ---
 import BaseLayout from '@layout/BaseLayout.astro';
 
-const title = 'Thomas ROBERT | Page Introuvable';
-const description =
-  "Page non trouvée sur le portfolio de Thomas ROBERT. Retournez à l'accueil pour découvrir mes projets.";
+import { personal } from '@data/personal';
+
+const title = `${personal.name} | Page Introuvable`;
+const description = `Page non trouvée sur le portfolio de ${personal.name}. Retournez à l'accueil pour découvrir mes projets.`;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -21,7 +22,7 @@ const description =
       <div class="mt-10">
         <a
           href="/"
-          aria-label="Retourner à la page d'accueil du portfolio de Thomas ROBERT"
+          aria-label={`Retourner à la page d'accueil du portfolio de ${personal.name}`}
           class="bg-primary hover:bg-primary/90 focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs outline-none focus-visible:ring-[3px]"
           >Retourner à l'accueil</a
         >
