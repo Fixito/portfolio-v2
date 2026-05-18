@@ -1,11 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components';
 
-interface Props {
-  url: string;
-  icon: string;
-  title: string;
-}
+import type { SocialLink } from '@data/types';
+
+type Props = SocialLink;
 
 const { url, icon, title } = Astro.props;
 ---

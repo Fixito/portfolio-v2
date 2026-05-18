@@ -3,3 +3,9 @@ export type SectionMeta = {
   description: string;
   icon: string;
 };
+
+export type SocialLink = {
+  url: string;
+  icon: string;
+  title: string;
+};

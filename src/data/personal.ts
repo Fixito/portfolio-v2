@@ -1,3 +1,5 @@
+import type { SocialLink } from '@data/types';
+
 export const personal = {
   name: 'Thomas ROBERT',
   email: 'thomas_3004@hotmail.fr',
@@ -14,5 +16,5 @@ export const personal = {
       icon: 'ri:linkedin-box-fill',
       title: 'LinkedIn',
     },
-  ],
+  ] satisfies SocialLink[],
 };
