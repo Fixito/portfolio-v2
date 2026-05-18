@@ -9,3 +9,8 @@ export type SocialLink = {
   icon: string;
   title: string;
 };
+
+export type NavLink = {
+  href: string;
+  text: string;
+};
