@@ -7,12 +7,10 @@ import SkillItem from './SkillItem.astro';
 
 <section id="skills" class="py-12">
   <div class="mx-auto max-w-7xl px-6 text-center lg:px-8">
-    <div class="mb-12 text-center">
-      <SectionHeader {...sectionMeta} />
+    <SectionHeader {...sectionMeta} />
 
-      <div class="mt-6 flex flex-wrap">
-        {skills.map((skill) => <SkillItem skill={skill} />)}
-      </div>
+    <div class="mt-6 flex flex-wrap">
+      {skills.map((skill) => <SkillItem skill={skill} />)}
     </div>
   </div>
 </section>
