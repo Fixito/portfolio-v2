@@ -28,7 +28,7 @@ import heroImage from '@assets/images/me.webp';
       <div class="mt-10 flex items-center gap-x-4">
         <a
           href={`mailto:${personal.email}`}
-          aria-label="Envoyer un email à Thomas ROBERT pour travailler ensemble"
+          aria-label={`Envoyer un email à ${personal.name} pour travailler ensemble`}
           class="bg-primary hover:bg-primary/90 focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs outline-none focus-visible:ring-[3px]"
         >
           Travailler avec moi
@@ -48,7 +48,7 @@ import heroImage from '@assets/images/me.webp';
     <Image
       class="mt-10 block w-full max-w-md rounded-lg object-cover sm:mt-16 lg:mt-0 lg:justify-self-end"
       src={heroImage}
-      alt="Photo de Thomas."
+      alt={`Photo de ${personal.name}.`}
       width={400}
     />
   </div>

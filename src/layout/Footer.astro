@@ -1,9 +1,11 @@
 ---
+import { personal } from '@data/personal';
+
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="bg-muted px-6 py-12 lg:px-8">
   <p class="text-muted-foreground text-center text-sm/6">
-    &copy; {currentYear} Thomas ROBERT. Tous droits réservés.
+    &copy; {currentYear} {personal.name}. Tous droits réservés.
   </p>
 </footer>
