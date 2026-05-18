@@ -13,6 +13,8 @@ import CvLink from './CvLink.astro';
     aria-controls="mobile-menu"
     aria-expanded="false"
     aria-label="Ouvrir le menu de navigation mobile"
+    data-label-open="Ouvrir le menu de navigation mobile"
+    data-label-close="Fermer le menu de navigation mobile"
     class="text-muted-foreground hover:bg-muted hover:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 relative inline-flex items-center justify-center rounded-md p-2 outline-none focus-visible:ring-[3px]"
   >
     <span class="absolute -inset-0.5"></span>
@@ -71,9 +73,13 @@ import CvLink from './CvLink.astro';
   mobileMenuButton.addEventListener('click', () => {
     toggleMenuIcons();
     mobileMenu.classList.toggle('hidden');
+    const isHidden = mobileMenu.classList.contains('hidden');
+    mobileMenuButton.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
     mobileMenuButton.setAttribute(
-      'aria-expanded',
-      mobileMenu.classList.contains('hidden') ? 'false' : 'true',
+      'aria-label',
+      isHidden
+        ? mobileMenuButton.getAttribute('data-label-open')!
+        : mobileMenuButton.getAttribute('data-label-close')!,
     );
   });
 
@@ -82,6 +88,10 @@ import CvLink from './CvLink.astro';
       toggleMenuIcons();
       mobileMenu.classList.add('hidden');
       mobileMenuButton.setAttribute('aria-expanded', 'false');
+      mobileMenuButton.setAttribute(
+        'aria-label',
+        mobileMenuButton.getAttribute('data-label-open')!,
+      );
     });
   });
 </script>
