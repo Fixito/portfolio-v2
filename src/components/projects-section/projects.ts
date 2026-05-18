@@ -3,6 +3,13 @@ import jobifyImage from '@assets/screenshots/mern-jobify.webp';
 import onlyMustImage from '@assets/screenshots/only-must.webp';
 import restcountriesApiImage from '@assets/screenshots/rest-countries-api.webp';
 
+export const sectionMeta = {
+  title: 'Mes projets',
+  description:
+    "Voici une sélection de mes projets qui m'ont permis de développer mes compétences :",
+  icon: 'ri:code-s-slash-fill',
+};
+
 export const projects = [
   {
     title: 'OnlyMust',
