@@ -6,50 +6,74 @@ import { personal } from '@data/personal';
 import heroImage from '@assets/images/me.webp';
 ---
 
-<section
-  id="about"
-  class="bg-background grid min-h-[calc(100vh-64px)] items-center py-32"
->
-  <div
-    class="mx-auto max-w-7xl px-6 lg:grid lg:grid-cols-2 lg:items-center lg:gap-8 lg:px-8"
-  >
+<section id="about" class="flex min-h-[calc(100vh-64px)] items-center py-24">
+  <div class="container lg:grid lg:grid-cols-2 lg:items-center lg:gap-16">
     <div>
       <h1
-        class="text-foreground text-4xl font-semibold tracking-tight sm:text-5xl"
+        data-hero-item
+        class="text-foreground text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl"
       >
-        Développeur Full-Stack React & Node.js
+        Développeur<br />Full-Stack<br />React & Node.js
       </h1>
-      <p class="text-muted-foreground mt-6 text-xl/8 text-pretty">
-        Développeur Full-Stack depuis 2020, spécialisé React/Node.js Je
-        transforme les idées en applications web performantes et intuitives.
-        Passionné par le code propre et l'expérience utilisateur, j'accompagne
-        les équipes dans leurs projets de digitalisation.
+
+      <p data-hero-item class="text-muted-foreground mt-6 max-w-2xl text-lg/8">
+        Je développe des applications web avec TypeScript, React et Node.js, en
+        combinant architecture propre, performance et expérience utilisateur.
       </p>
-      <div class="mt-10 flex items-center gap-x-4">
+
+      <p data-hero-item class="text-muted-foreground mt-2 text-lg/8">
+        Développement et transmission depuis 2020.
+      </p>
+
+      <div data-hero-item class="mt-10 flex flex-wrap items-center gap-6">
         <a
           href={`mailto:${personal.email}`}
           aria-label={`Envoyer un email à ${personal.name} pour travailler ensemble`}
-          class="bg-primary hover:bg-primary/90 focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs outline-none focus-visible:ring-[3px]"
+          class="cta-primary bg-primary hover:bg-primary-accent focus-visible:ring-ring focus-visible:ring-offset-background inline-flex items-center rounded-lg px-5 py-2.5 text-sm font-semibold text-white focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
         >
           Travailler avec moi
         </a>
+
         <a
           href="#projects"
           aria-label="Naviguer vers la section de mes projets"
-          class="text-secondary-foreground focus-visible:border-ring focus-visible:ring-ring/50 inline-flex items-center gap-x-1 text-sm/6 font-semibold outline-none focus-visible:ring-[3px]"
+          class="group text-muted-foreground hover:text-foreground focus-visible:ring-ring focus-visible:ring-offset-background inline-flex items-center gap-1.5 text-sm font-medium transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
         >
           Voir mes projets
-          <span aria-hidden="true">
-            <Icon name="ri:arrow-right-line" class="h-4 w-4" />
-          </span>
+          <Icon
+            name="ri:arrow-right-line"
+            class="h-4 w-4 transition-transform duration-150 group-hover:translate-x-1"
+            aria-hidden="true"
+          />
         </a>
       </div>
     </div>
-    <Image
-      class="mt-10 block w-full max-w-md rounded-lg object-cover sm:mt-16 lg:mt-0 lg:justify-self-end"
-      src={heroImage}
-      alt={`Photo de ${personal.name}.`}
-      width={400}
-    />
+
+    <!-- Image -->
+    <div data-hero-item class="mt-14 lg:mt-0 lg:justify-self-end">
+      <Image
+        class="block w-full max-w-sm rounded-2xl object-cover"
+        src={heroImage}
+        alt={`Photo de ${personal.name}.`}
+        width={400}
+        priority
+      />
+    </div>
   </div>
 </section>
+
+<style>
+  .cta-primary {
+    transition:
+      background-color 150ms var(--ease-out),
+      transform 160ms var(--ease-out);
+  }
+
+  .cta-primary:active {
+    transform: scale(0.97);
+  }
+</style>
+
+<script>
+  import '../scripts/hero-animation';
+</script>

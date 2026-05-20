@@ -14,7 +14,7 @@ const { class: className, ...rest } = Astro.props;
   aria-label={`Télécharger le CV de ${personal.name} au format PDF`}
   download
   class:list={[
-    'text-muted-foreground hover:bg-muted hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-ring/50 rounded-md px-3 py-2 text-sm font-medium transition-colors outline-none focus-visible:ring-[3px]',
+    'border-border text-muted-foreground hover:text-accent-foreground focus-visible:ring-ring focus-visible:ring-offset-background hover:bg-accent inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
     className,
   ]}
   {...rest}

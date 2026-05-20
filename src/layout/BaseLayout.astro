@@ -8,7 +8,7 @@ type Props = ComponentProps<typeof Head>;
 ---
 
 <!doctype html>
-<html lang="fr" class="scroll-smooth">
+<html lang="fr">
   <Head {...Astro.props} />
   <body>
     <slot />
@@ -19,6 +19,9 @@ type Props = ComponentProps<typeof Head>;
           (!('theme' in localStorage) &&
             window.matchMedia('(prefers-color-scheme: dark)').matches),
       );
+    </script>
+    <script>
+      import '../scripts/scroll-reveal';
     </script>
   </body>
 </html>

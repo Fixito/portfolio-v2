@@ -1,15 +1,18 @@
 ---
-import { sectionMeta, skills } from './skills';
+import { skills } from '@data/skills';
+import { sectionMeta } from './skills';
 
 import SectionHeader from '@components/SectionHeader.astro';
 import SkillItem from './SkillItem.astro';
 ---
 
-<section id="skills" class="py-12">
-  <div class="mx-auto max-w-7xl px-6 text-center lg:px-8">
-    <SectionHeader {...sectionMeta} />
+<section id="skills" class="py-24">
+  <div class="container">
+    <div class="mb-12 text-center">
+      <SectionHeader {...sectionMeta} />
+    </div>
 
-    <div class="mt-6 flex flex-wrap">
+    <div class="reveal-stagger mx-auto grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-3">
       {skills.map((skill) => <SkillItem skill={skill} />)}
     </div>
   </div>
