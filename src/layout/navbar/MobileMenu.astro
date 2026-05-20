@@ -56,6 +56,7 @@ import CvLink from './CvLink.astro';
 
 <script>
   import { scrollToSection } from '../../scripts/smooth-scroll';
+  import { prefersReducedMotion } from '../../scripts/animations';
 
   const panel = document.getElementById('mobile-menu')!;
   const mobileMenuButton = document.querySelector(
@@ -117,10 +118,6 @@ import CvLink from './CvLink.astro';
     setIconState(false);
     delete header.dataset.menuOpen;
 
-    const prefersReducedMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    ).matches;
-
     const finishClose = () => {
       panel.hidden = true;
       panel.classList.remove('is-closing');
@@ -129,7 +126,7 @@ import CvLink from './CvLink.astro';
 
     panel.classList.add('is-closing');
 
-    if (prefersReducedMotion) {
+    if (prefersReducedMotion()) {
       finishClose();
     } else {
       let timeoutId: number | null = null;
