@@ -78,6 +78,8 @@ import SocialLink from './SocialLink.astro';
 </header>
 
 <script>
+  import { scrollToSection } from '../../scripts/smooth-scroll';
+
   const header = document.getElementById('site-header')!;
   const navLinks = document.querySelectorAll('[data-nav-link]');
 
@@ -88,18 +90,13 @@ import SocialLink from './SocialLink.astro';
   window.addEventListener('scroll', updateHeader, { passive: true });
   updateHeader();
 
-  /* Smooth scroll */
   navLinks.forEach((navLink) => {
     navLink.addEventListener('click', (e) => {
       e.preventDefault();
       const target = (e.currentTarget as HTMLElement).getAttribute('href')!;
       const section = document.querySelector(target) as HTMLElement | null;
       if (!section) return;
-      const headerHeight = header.getBoundingClientRect().height;
-      window.scrollTo({
-        top: section.offsetTop - headerHeight,
-        behavior: 'smooth',
-      });
+      scrollToSection(section);
     });
   });
 </script>

@@ -55,6 +55,8 @@ import CvLink from './CvLink.astro';
 </div>
 
 <script>
+  import { scrollToSection } from '../../scripts/smooth-scroll';
+
   const panel = document.getElementById('mobile-menu')!;
   const mobileMenuButton = document.querySelector(
     "button[aria-controls='mobile-menu']",
@@ -158,14 +160,7 @@ import CvLink from './CvLink.astro';
       if (href?.startsWith('#')) {
         e.preventDefault();
         const section = document.querySelector(href) as HTMLElement | null;
-
-        if (section) {
-          const headerHeight = header.getBoundingClientRect().height;
-          window.scrollTo({
-            top: section.offsetTop - headerHeight,
-            behavior: 'smooth',
-          });
-        }
+        if (section) scrollToSection(section);
       }
       closeMenu();
     });
