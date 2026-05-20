@@ -59,7 +59,6 @@
   --accent: oklch(12.9% 0.042 264.695);
   --accent-foreground: oklch(0.94 0.005 264);
   --border: oklch(27.9% 0.041 260.031);
-  --border: oklch(27.9% 0.041 260.031);
   --ring: oklch(62.3% 0.214 259.815);
 }
 
@@ -189,6 +188,11 @@ body:has(#site-header[data-scrolled='true']) #mobile-menu {
     opacity: 0;
     transform: translateY(-8px);
   }
+}
+
+#mobile-menu.starting-style {
+  opacity: 0;
+  transform: translateY(-8px);
 }
 
 #mobile-menu.is-closing {

@@ -66,40 +66,85 @@ import CvLink from './CvLink.astro';
 
   document.body.appendChild(panel);
 
-  const toggleIcons = () => {
-    menuIconClosed.classList.toggle('hidden');
-    menuIconOpen.classList.toggle('hidden');
+  let isAnimating = false;
+
+  const setIconState = (isOpen: boolean) => {
+    if (isOpen) {
+      menuIconClosed.classList.add('hidden');
+      menuIconOpen.classList.remove('hidden');
+    } else {
+      menuIconClosed.classList.remove('hidden');
+      menuIconOpen.classList.add('hidden');
+    }
   };
 
   const openMenu = () => {
+    if (isAnimating || header.dataset.menuOpen === 'true') return;
+    isAnimating = true;
+
+    panel.classList.add('starting-style');
     panel.hidden = false;
+
+    // Force a reflow to ensure the starting-style class is applied before removing it
+    panel.offsetHeight;
+
+    requestAnimationFrame(() => {
+      panel.classList.remove('starting-style');
+    });
+
     header.dataset.menuOpen = 'true';
     mobileMenuButton.setAttribute('aria-expanded', 'true');
     mobileMenuButton.setAttribute(
       'aria-label',
       mobileMenuButton.getAttribute('data-label-close')!,
     );
-    toggleIcons();
+    setIconState(true);
+
+    isAnimating = false;
   };
 
   const closeMenu = () => {
+    if (isAnimating || header.dataset.menuOpen !== 'true') return;
+    isAnimating = true;
+
     mobileMenuButton.setAttribute('aria-expanded', 'false');
     mobileMenuButton.setAttribute(
       'aria-label',
       mobileMenuButton.getAttribute('data-label-open')!,
     );
-    toggleIcons();
+    setIconState(false);
     delete header.dataset.menuOpen;
 
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+
+    const finishClose = () => {
+      panel.hidden = true;
+      panel.classList.remove('is-closing');
+      isAnimating = false;
+    };
+
     panel.classList.add('is-closing');
-    panel.addEventListener(
-      'transitionend',
-      () => {
-        panel.hidden = true;
-        panel.classList.remove('is-closing');
-      },
-      { once: true },
-    );
+
+    if (prefersReducedMotion) {
+      finishClose();
+    } else {
+      let timeoutId: number | null = null;
+      const onTransitionEnd = () => {
+        if (timeoutId !== null) {
+          clearTimeout(timeoutId);
+        }
+        finishClose();
+      };
+
+      panel.addEventListener('transitionend', onTransitionEnd, { once: true });
+
+      timeoutId = window.setTimeout(() => {
+        panel.removeEventListener('transitionend', onTransitionEnd);
+        finishClose();
+      }, 200);
+    }
   };
 
   mobileMenuButton.addEventListener('click', () => {
