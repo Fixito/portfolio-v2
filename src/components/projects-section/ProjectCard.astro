@@ -9,6 +9,7 @@ const { link, image, subtitle, title, description } = Astro.props;
 ---
 
 <div
+  data-project-card
   class="reveal group border-border bg-card has-focus-visible:ring-ring relative aspect-video w-full overflow-hidden rounded-2xl border has-focus-visible:ring-2 has-focus-visible:ring-offset-2"
 >
   <!-- Screenshot -->
@@ -53,6 +54,14 @@ const { link, image, subtitle, title, description } = Astro.props;
 
 <style>
   @media (hover: hover) and (pointer: fine) {
+    .group {
+      transition: box-shadow 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .group:hover {
+      box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.2);
+    }
+
     .group:hover .card-image {
       transform: scale(1.05);
     }
@@ -62,3 +71,7 @@ const { link, image, subtitle, title, description } = Astro.props;
     }
   }
 </style>
+
+<script>
+  import '../../scripts/hover-effects';
+</script>

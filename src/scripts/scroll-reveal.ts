@@ -1,31 +1,42 @@
-const prefersReducedMotion = window.matchMedia(
-  '(prefers-reduced-motion: reduce)',
-).matches;
+import { animate, inView, stagger } from 'motion';
 
-if (!prefersReducedMotion) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12 },
-  );
+import { easeContent, prefersReducedMotion } from './animations';
 
-  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-
-  document.querySelectorAll('.reveal-stagger > *').forEach((el) => {
-    el.classList.add('reveal');
-    observer.observe(el);
-  });
-} else {
-  document
-    .querySelectorAll('.reveal')
-    .forEach((el) => el.classList.add('visible'));
+if (prefersReducedMotion()) {
+  document.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
   document.querySelectorAll('.reveal-stagger > *').forEach((el) => {
     el.classList.add('reveal', 'visible');
+  });
+} else {
+  // Track stagger children to avoid double-processing
+  const staggerChildren = new Set<Element>();
+  document.querySelectorAll('.reveal-stagger > *').forEach((el) => {
+    staggerChildren.add(el);
+    el.classList.add('reveal'); // apply initial hidden CSS state
+  });
+
+  // Stagger groups: observe parent, animate all children at once with stagger delay
+  document.querySelectorAll<HTMLElement>('.reveal-stagger').forEach((container) => {
+    const stop = inView(
+      container,
+      () => {
+        animate(Array.from(container.children) as Element[], { opacity: [0, 1], y: [20, 0] }, { duration: 0.55, ease: easeContent, delay: stagger(0.05) });
+        stop();
+      },
+      { amount: 0.12 },
+    );
+  });
+
+  // Individual reveals not inside a stagger group
+  document.querySelectorAll<HTMLElement>('.reveal').forEach((el) => {
+    if (staggerChildren.has(el)) return;
+    const stop = inView(
+      el,
+      () => {
+        animate(el as Element, { opacity: [0, 1], y: [20, 0] }, { duration: 0.6, ease: easeContent });
+        stop();
+      },
+      { amount: 0.12 },
+    );
   });
 }
