@@ -9,13 +9,13 @@ import MobileMenu from './MobileMenu.astro';
 import SocialLink from './SocialLink.astro';
 ---
 
-<header>
+<header id="site-header" class="sticky top-0 z-50 transition-[background-color,border-color,box-shadow] duration-150">
   <nav
     id="navigation"
-    class="bg-background relative shadow-sm"
+    class="relative"
     aria-label="Navigation principale"
   >
-    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="container">
       <div class="relative flex h-16 items-center justify-between gap-2">
         <MobileMenu />
 
@@ -23,19 +23,25 @@ import SocialLink from './SocialLink.astro';
           class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
         >
           <div class="flex shrink-0 items-center">
-            <span class="text-foreground text-xl">{personal.name}</span>
+            <a
+              href="#about"
+              class="focus-visible:ring-ring focus-visible:ring-offset-background text-lg font-bold tracking-tight focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+              aria-label="Retour en haut de page"
+            >
+              {personal.name}
+            </a>
           </div>
 
           <!-- NAV LINKS -->
-          <div class="hidden sm:ml-6 sm:block">
-            <div class="flex items-center gap-4">
+          <div class="hidden sm:ml-8 sm:block">
+            <div class="flex items-center gap-1">
               {
                 navlinks.map(({ href, text }) => (
                   <a
                     href={href}
                     data-nav-link
                     aria-label={`Naviguer vers la section ${text.toLowerCase()}`}
-                    class="text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 hover:bg-muted hover:text-accent-foreground rounded-md px-3 py-2 text-sm font-medium transition-colors outline-none focus-visible:ring-[3px]"
+                    class="text-muted-foreground hover:text-foreground focus-visible:ring-ring focus-visible:ring-offset-background rounded-md px-3 py-2 text-sm font-medium transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
                   >
                     {text}
                   </a>
@@ -47,22 +53,24 @@ import SocialLink from './SocialLink.astro';
         </div>
 
         <!-- SOCIAL LINKS -->
-        <div class="flex items-center">
-          {personal.socialLinks.map((socialLink) => <SocialLink {...socialLink} />)}
-          <div class="shrink-0">
-            <a
-              href={`mailto:${personal.email}`}
-              aria-label={`Envoyer un email à ${personal.name} pour me contacter`}
-              class="text-muted-foreground hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-ring/50 inline-flex gap-1.5 p-1 font-medium transition-colors outline-none focus-visible:ring-[3px]"
-            >
-              Me contacter
-              <Icon
-                name="ri:arrow-right-line"
-                class="h-6 w-6"
-                aria-hidden="true"
-              />
-            </a>
-          </div>
+        <div class="flex items-center gap-1">
+          {
+            personal.socialLinks.map((socialLink) => (
+              <SocialLink {...socialLink} />
+            ))
+          }
+          <a
+            href={`mailto:${personal.email}`}
+            aria-label={`Envoyer un email à ${personal.name} pour me contacter`}
+            class="text-muted-foreground hover:text-foreground focus-visible:ring-ring focus-visible:ring-offset-background hidden items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none sm:inline-flex"
+          >
+            Me contacter
+            <Icon
+              name="ri:arrow-right-line"
+              class="size-4"
+              aria-hidden="true"
+            />
+          </a>
         </div>
       </div>
     </div>
@@ -70,27 +78,27 @@ import SocialLink from './SocialLink.astro';
 </header>
 
 <script>
+  const header = document.getElementById('site-header')!;
   const navLinks = document.querySelectorAll('[data-nav-link]');
-  const header = document.querySelector('header')!;
 
+  const updateHeader = () => {
+    header.dataset.scrolled = window.scrollY > 20 ? 'true' : 'false';
+  };
+
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  updateHeader();
+
+  /* Smooth scroll */
   navLinks.forEach((navLink) => {
     navLink.addEventListener('click', (e) => {
       e.preventDefault();
       const target = (e.currentTarget as HTMLElement).getAttribute('href')!;
-      const location =
-        (document.querySelector(target) as HTMLElement)?.offsetTop ?? 0;
+      const section = document.querySelector(target) as HTMLElement | null;
+      if (!section) return;
       const headerHeight = header.getBoundingClientRect().height;
-      let top = 0;
-
-      if (headerHeight > 64) {
-        top = location;
-      } else {
-        top = location - headerHeight;
-      }
-
       window.scrollTo({
-        left: 0,
-        top,
+        top: section.offsetTop - headerHeight,
+        behavior: 'smooth',
       });
     });
   });

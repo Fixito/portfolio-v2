@@ -1,11 +1,42 @@
 ---
+import { Icon } from 'astro-icon/components';
 import { personal } from '@data/personal';
 
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-muted px-6 py-12 lg:px-8">
-  <p class="text-muted-foreground text-center text-sm/6">
-    &copy; {currentYear} {personal.name}. Tous droits réservés.
-  </p>
+<footer class="bg-background py-12">
+  <div
+    class="container flex flex-col items-center gap-6 sm:flex-row sm:justify-between"
+  >
+    <p class="text-muted-foreground text-sm">
+      &copy; {currentYear}
+      <span class="text-foreground font-medium">{personal.name}</span>. Tous
+      droits réservés.
+    </p>
+
+    <div class="flex items-center gap-2">
+      {
+        personal.socialLinks.map(({ url, icon, title }) => (
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Consulter mon profil ${title} (ouvre dans un nouvel onglet)`}
+            class="text-muted-foreground hover:text-foreground focus-visible:ring-ring focus-visible:ring-offset-background rounded-md p-2 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+          >
+            <Icon name={icon} class="h-5 w-5" aria-hidden="true" />
+          </a>
+        ))
+      }
+
+      <a
+        href={`mailto:${personal.email}`}
+        aria-label={`Envoyer un email à ${personal.name}`}
+        class="text-muted-foreground hover:text-foreground focus-visible:ring-ring focus-visible:ring-offset-background rounded-md p-2 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+      >
+        <Icon name="ri:mail-line" class="h-5 w-5" aria-hidden="true" />
+      </a>
+    </div>
+  </div>
 </footer>

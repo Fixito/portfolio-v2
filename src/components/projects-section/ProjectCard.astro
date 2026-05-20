@@ -9,39 +9,56 @@ const { link, image, subtitle, title, description } = Astro.props;
 ---
 
 <div
-  class="has-focus:border-ring has-focus:ring-ring/50 aspect-video w-full rounded-xl border shadow-xs has-focus:ring-[3px]"
+  class="reveal group border-border bg-card has-focus-visible:ring-ring relative aspect-video w-full overflow-hidden rounded-2xl border has-focus-visible:ring-2 has-focus-visible:ring-offset-2"
 >
-  <div class="relative h-full">
-    <Image
-      alt={`Capture d'écran du projet ${title}`}
-      class="absolute inset-0 block h-full w-full rounded-xl object-cover"
-      src={image}
-      width={800}
-      height={450}
-    />
-    <div
-      class="bg-card relative z-10 grid h-full w-full place-items-center rounded-xl p-4 opacity-0 transition-opacity hover:opacity-100 has-focus:opacity-100"
+  <!-- Screenshot -->
+  <Image
+    alt={`Capture d'écran du projet ${title}`}
+    class="card-image absolute inset-0 h-full w-full object-cover transition-transform duration-300"
+    src={image}
+    width={800}
+    height={450}
+  />
+
+  <!-- Dark overlay + info (visible on hover / focus-within) -->
+  <div
+    class="card-overlay absolute inset-0 flex flex-col justify-end bg-[linear-gradient(to_top,#000,75%,#0000)] p-6 opacity-0 transition-opacity duration-300 group-focus-within:opacity-100"
+  >
+    <p class="mb-1 font-mono text-xs tracking-widest text-blue-300 uppercase">
+      {subtitle}
+    </p>
+
+    <h3
+      class="text-xl font-bold text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.8)]"
     >
-      <div class="space-y-2">
-        <p class="text-primary text-sm/6 font-medium tracking-widest">
-          {subtitle}
-        </p>
-        <h3 class="text-card-foreground text-lg font-medium">
-          <a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Voir le projet ${title} sur GitHub (ouvre dans un nouvel onglet)`}
-            class="outline-none"
-          >
-            <span class="absolute inset-0"></span>
-            {title}
-          </a>
-        </h3>
-        <p class="text-muted-foreground max-w-[65ch] text-sm text-pretty">
-          {description}
-        </p>
-      </div>
-    </div>
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Voir le projet ${title} sur GitHub (ouvre dans un nouvel onglet)`}
+        class="focus-visible:outline-none"
+      >
+        <span class="absolute inset-0"></span>
+        {title}
+      </a>
+    </h3>
+
+    <p
+      class="mt-2 text-sm text-pretty text-white/80 [text-shadow:0_1px_6px_rgba(0,0,0,0.6)]"
+    >
+      {description}
+    </p>
   </div>
 </div>
+
+<style>
+  @media (hover: hover) and (pointer: fine) {
+    .group:hover .card-image {
+      transform: scale(1.05);
+    }
+
+    .group:hover .card-overlay {
+      opacity: 1;
+    }
+  }
+</style>

@@ -8,7 +8,7 @@ type Props = ComponentProps<typeof Head>;
 ---
 
 <!doctype html>
-<html lang="fr" class="scroll-smooth">
+<html lang="fr">
   <Head {...Astro.props} />
   <body>
     <slot />
@@ -19,6 +19,44 @@ type Props = ComponentProps<typeof Head>;
           (!('theme' in localStorage) &&
             window.matchMedia('(prefers-color-scheme: dark)').matches),
       );
+    </script>
+    <script>
+      /* Global scroll-reveal via IntersectionObserver */
+      const prefersReducedMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)',
+      ).matches;
+
+      if (!prefersReducedMotion) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12 },
+        );
+
+        document
+          .querySelectorAll('.reveal')
+          .forEach((el) => observer.observe(el));
+
+        /* Staggered children: observe each child with the reveal class */
+        document.querySelectorAll('.reveal-stagger > *').forEach((el) => {
+          el.classList.add('reveal');
+          observer.observe(el);
+        });
+      } else {
+        /* If reduced motion, make everything visible immediately */
+        document
+          .querySelectorAll('.reveal')
+          .forEach((el) => el.classList.add('visible'));
+        document.querySelectorAll('.reveal-stagger > *').forEach((el) => {
+          el.classList.add('reveal', 'visible');
+        });
+      }
     </script>
   </body>
 </html>

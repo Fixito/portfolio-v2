@@ -15,83 +15,114 @@ import CvLink from './CvLink.astro';
     aria-label="Ouvrir le menu de navigation mobile"
     data-label-open="Ouvrir le menu de navigation mobile"
     data-label-close="Fermer le menu de navigation mobile"
-    class="text-muted-foreground hover:bg-muted hover:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 relative inline-flex items-center justify-center rounded-md p-2 outline-none focus-visible:ring-[3px]"
+    class="text-muted-foreground hover:bg-muted hover:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring relative inline-flex items-center justify-center rounded-md p-2 outline-none focus-visible:ring-[3px]"
   >
     <span class="absolute -inset-0.5"></span>
     <span class="sr-only">Ouvrir le menu principal</span>
-    <!-- Icon when menu is closed. -->
     <Icon
       name="ri:menu-fill"
       aria-hidden="true"
-      class="block size-6"
+      class="text-muted-foreground block size-6"
       id="menu-icon-closed"
     />
-    <!-- Icon when menu is open. -->
     <Icon
       name="ri:close-fill"
       aria-hidden="true"
-      class="hidden size-6"
+      class="text-muted-foreground hidden size-6"
       id="menu-icon-open"
     />
   </button>
 </div>
 
-<div id="mobile-menu" class="hidden sm:hidden">
-  <div
-    class="bg-background absolute top-full left-0 w-full space-y-1 px-2 pt-2 pb-3 shadow-sm"
-  >
-    {
-      navlinks.map(({ href, text }) => (
-        <a
-          href={href}
-          aria-label={`Naviguer vers la section ${text.toLowerCase()}`}
-          class="text-muted-foreground hover:bg-muted hover:text-accent-foreground focus-visible:border-ring focus-visible:ring-ring/50 block rounded-md px-3 py-2 text-base font-medium outline-none focus-visible:ring-[3px]"
-          data-mobile-nav-link
-        >
-          {text}
-        </a>
-      ))
-    }
-    <CvLink class="block" data-mobile-nav-link />
-  </div>
+<div
+  id="mobile-menu"
+  hidden
+  class="border-border bg-background fixed top-16 right-0 left-0 z-40 space-y-1 border-b px-4 pt-2 pb-3 shadow-lg backdrop-blur-md"
+>
+  {
+    navlinks.map(({ href, text }) => (
+      <a
+        href={href}
+        aria-label={`Naviguer vers la section ${text.toLowerCase()}`}
+        data-mobile-nav-link
+        class="text-muted-foreground hover:text-foreground block rounded-md px-3 py-2 text-base font-medium transition-colors duration-150"
+      >
+        {text}
+      </a>
+    ))
+  }
+  <CvLink data-mobile-nav-link class="block" />
 </div>
 
 <script>
-  const mobileMenu = document.querySelector('#mobile-menu')!;
+  const panel = document.getElementById('mobile-menu')!;
   const mobileMenuButton = document.querySelector(
     "button[aria-controls='mobile-menu']",
   )!;
   const mobileNavlinks = document.querySelectorAll('[data-mobile-nav-link]');
   const menuIconClosed = document.querySelector('#menu-icon-closed')!;
   const menuIconOpen = document.querySelector('#menu-icon-open')!;
+  const header = document.getElementById('site-header')!;
 
-  const toggleMenuIcons = () => {
+  document.body.appendChild(panel);
+
+  const toggleIcons = () => {
     menuIconClosed.classList.toggle('hidden');
     menuIconOpen.classList.toggle('hidden');
   };
 
-  mobileMenuButton.addEventListener('click', () => {
-    toggleMenuIcons();
-    mobileMenu.classList.toggle('hidden');
-    const isHidden = mobileMenu.classList.contains('hidden');
-    mobileMenuButton.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
+  const openMenu = () => {
+    panel.hidden = false;
+    header.dataset.menuOpen = 'true';
+    mobileMenuButton.setAttribute('aria-expanded', 'true');
     mobileMenuButton.setAttribute(
       'aria-label',
-      isHidden
-        ? mobileMenuButton.getAttribute('data-label-open')!
-        : mobileMenuButton.getAttribute('data-label-close')!,
+      mobileMenuButton.getAttribute('data-label-close')!,
     );
+    toggleIcons();
+  };
+
+  const closeMenu = () => {
+    mobileMenuButton.setAttribute('aria-expanded', 'false');
+    mobileMenuButton.setAttribute(
+      'aria-label',
+      mobileMenuButton.getAttribute('data-label-open')!,
+    );
+    toggleIcons();
+    delete header.dataset.menuOpen;
+
+    panel.classList.add('is-closing');
+    panel.addEventListener(
+      'transitionend',
+      () => {
+        panel.hidden = true;
+        panel.classList.remove('is-closing');
+      },
+      { once: true },
+    );
+  };
+
+  mobileMenuButton.addEventListener('click', () => {
+    panel.hidden ? openMenu() : closeMenu();
   });
 
   mobileNavlinks.forEach((navLink) => {
-    navLink.addEventListener('click', () => {
-      toggleMenuIcons();
-      mobileMenu.classList.add('hidden');
-      mobileMenuButton.setAttribute('aria-expanded', 'false');
-      mobileMenuButton.setAttribute(
-        'aria-label',
-        mobileMenuButton.getAttribute('data-label-open')!,
-      );
+    navLink.addEventListener('click', (e) => {
+      const href = (e.currentTarget as HTMLElement).getAttribute('href');
+
+      if (href?.startsWith('#')) {
+        e.preventDefault();
+        const section = document.querySelector(href) as HTMLElement | null;
+
+        if (section) {
+          const headerHeight = header.getBoundingClientRect().height;
+          window.scrollTo({
+            top: section.offsetTop - headerHeight,
+            behavior: 'smooth',
+          });
+        }
+      }
+      closeMenu();
     });
   });
 </script>
