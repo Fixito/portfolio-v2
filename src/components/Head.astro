@@ -7,11 +7,7 @@ interface Props {
   url?: string;
 }
 
-const {
-  title,
-  description,
-  url = personal.siteUrl,
-} = Astro.props;
+const { title, description, url = personal.siteUrl } = Astro.props;
 
 const twitterDomain = new URL(personal.siteUrl).hostname;
 ---

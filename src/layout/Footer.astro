@@ -7,21 +7,14 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer class="bg-background py-12">
-  <div
-    class="container flex flex-col items-center gap-6 sm:flex-row sm:justify-between"
-  >
+  <div class="container flex flex-col items-center gap-6 sm:flex-row sm:justify-between">
     <p class="text-muted-foreground text-sm">
       &copy; {currentYear}
-      <span class="text-foreground font-medium">{personal.name}</span>. Tous
-      droits réservés.
+      <span class="text-foreground font-medium">{personal.name}</span>. Tous droits réservés.
     </p>
 
     <div class="flex items-center gap-2">
-      {
-        personal.socialLinks.map((socialLink) => (
-          <SocialLink {...socialLink} />
-        ))
-      }
+      {personal.socialLinks.map((socialLink) => <SocialLink {...socialLink} />)}
 
       <a
         href={`mailto:${personal.email}`}

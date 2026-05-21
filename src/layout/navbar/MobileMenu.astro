@@ -59,9 +59,7 @@ import CvLink from './CvLink.astro';
   import { prefersReducedMotion } from '../../scripts/animations';
 
   const panel = document.getElementById('mobile-menu')!;
-  const mobileMenuButton = document.querySelector(
-    "button[aria-controls='mobile-menu']",
-  )!;
+  const mobileMenuButton = document.querySelector("button[aria-controls='mobile-menu']")!;
   const mobileNavlinks = document.querySelectorAll('[data-mobile-nav-link]');
   const menuIconClosed = document.querySelector('#menu-icon-closed')!;
   const menuIconOpen = document.querySelector('#menu-icon-open')!;
@@ -89,7 +87,7 @@ import CvLink from './CvLink.astro';
     panel.hidden = false;
 
     // Force a reflow to ensure the starting-style class is applied before removing it
-    panel.offsetHeight;
+    void panel.offsetHeight;
 
     requestAnimationFrame(() => {
       panel.classList.remove('starting-style');
@@ -97,10 +95,7 @@ import CvLink from './CvLink.astro';
 
     header.dataset.menuOpen = 'true';
     mobileMenuButton.setAttribute('aria-expanded', 'true');
-    mobileMenuButton.setAttribute(
-      'aria-label',
-      mobileMenuButton.getAttribute('data-label-close')!,
-    );
+    mobileMenuButton.setAttribute('aria-label', mobileMenuButton.getAttribute('data-label-close')!);
     setIconState(true);
 
     isAnimating = false;
@@ -111,10 +106,7 @@ import CvLink from './CvLink.astro';
     isAnimating = true;
 
     mobileMenuButton.setAttribute('aria-expanded', 'false');
-    mobileMenuButton.setAttribute(
-      'aria-label',
-      mobileMenuButton.getAttribute('data-label-open')!,
-    );
+    mobileMenuButton.setAttribute('aria-label', mobileMenuButton.getAttribute('data-label-open')!);
     setIconState(false);
     delete header.dataset.menuOpen;
 
@@ -147,7 +139,11 @@ import CvLink from './CvLink.astro';
   };
 
   mobileMenuButton.addEventListener('click', () => {
-    panel.hidden ? openMenu() : closeMenu();
+    if (panel.hidden) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
   });
 
   mobileNavlinks.forEach((navLink) => {

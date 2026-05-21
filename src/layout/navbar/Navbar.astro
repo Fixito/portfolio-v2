@@ -9,19 +9,16 @@ import MobileMenu from './MobileMenu.astro';
 import SocialLink from '../SocialLink.astro';
 ---
 
-<header id="site-header" class="sticky top-0 z-50 transition-[background-color,border-color,box-shadow] duration-150">
-  <nav
-    id="navigation"
-    class="relative"
-    aria-label="Navigation principale"
-  >
+<header
+  id="site-header"
+  class="sticky top-0 z-50 transition-[background-color,border-color,box-shadow] duration-150"
+>
+  <nav id="navigation" class="relative" aria-label="Navigation principale">
     <div class="container">
       <div class="relative flex h-16 items-center justify-between gap-2">
         <MobileMenu />
 
-        <div
-          class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
-        >
+        <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
           <div class="flex shrink-0 items-center">
             <a
               href="#about"
@@ -54,22 +51,14 @@ import SocialLink from '../SocialLink.astro';
 
         <!-- SOCIAL LINKS -->
         <div class="flex items-center gap-1">
-          {
-            personal.socialLinks.map((socialLink) => (
-              <SocialLink {...socialLink} />
-            ))
-          }
+          {personal.socialLinks.map((socialLink) => <SocialLink {...socialLink} />)}
           <a
             href={`mailto:${personal.email}`}
             aria-label={`Envoyer un email à ${personal.name} pour me contacter`}
             class="text-muted-foreground hover:text-foreground focus-visible:ring-ring focus-visible:ring-offset-background hidden items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none sm:inline-flex"
           >
             Me contacter
-            <Icon
-              name="ri:arrow-right-line"
-              class="size-4"
-              aria-hidden="true"
-            />
+            <Icon name="ri:arrow-right-line" class="size-4" aria-hidden="true" />
           </a>
         </div>
       </div>

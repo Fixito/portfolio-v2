@@ -1,7 +1,7 @@
 {
   "name": "portfolio-v2",
-  "type": "module",
   "version": "0.0.1",
+  "type": "module",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -10,7 +10,10 @@
     "astro": "astro",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "typecheck": "astro check"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "astro check",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.2",
@@ -25,9 +28,22 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "@eslint/js": "^10.0.1",
+    "@typescript-eslint/parser": "^8.59.4",
+    "eslint": "^10.4.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-astro": "^1.7.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.5",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.12.0",
     "prettier-plugin-tailwindcss": "^0.6.14",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.59.4"
+  },
+  "lint-staged": {
+    "*.{js,ts,astro}": "eslint --cache --fix",
+    "*.{js,ts,astro,css,json,md}": "prettier --write"
   }
 }
