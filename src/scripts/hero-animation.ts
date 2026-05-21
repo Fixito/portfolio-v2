@@ -10,6 +10,10 @@ if (heroItems.length > 0) {
       el.style.opacity = '1';
     });
   } else {
-    animate(heroItems as Element[], { opacity: [0, 1], y: [24, 0] }, { duration: 0.65, ease: easeContent, delay: stagger(0.1) });
+    animate(
+      heroItems as Element[],
+      { opacity: [0, 1], y: [24, 0] },
+      { duration: 0.65, ease: easeContent, delay: stagger(0.1) },
+    );
   }
 }

@@ -16,8 +16,7 @@ type Props = ComponentProps<typeof Head>;
       document.documentElement.classList.toggle(
         'dark',
         localStorage.theme === 'dark' ||
-          (!('theme' in localStorage) &&
-            window.matchMedia('(prefers-color-scheme: dark)').matches),
+          (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches),
       );
     </script>
     <script>

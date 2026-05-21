@@ -20,7 +20,11 @@ if (prefersReducedMotion()) {
     const stop = inView(
       container,
       () => {
-        animate(Array.from(container.children) as Element[], { opacity: [0, 1], y: [20, 0] }, { duration: 0.55, ease: easeContent, delay: stagger(0.05) });
+        animate(
+          Array.from(container.children) as Element[],
+          { opacity: [0, 1], y: [20, 0] },
+          { duration: 0.55, ease: easeContent, delay: stagger(0.05) },
+        );
         stop();
       },
       { amount: 0.12 },
@@ -33,7 +37,11 @@ if (prefersReducedMotion()) {
     const stop = inView(
       el,
       () => {
-        animate(el as Element, { opacity: [0, 1], y: [20, 0] }, { duration: 0.6, ease: easeContent });
+        animate(
+          el as Element,
+          { opacity: [0, 1], y: [20, 0] },
+          { duration: 0.6, ease: easeContent },
+        );
         stop();
       },
       { amount: 0.12 },
