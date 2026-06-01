@@ -3,7 +3,7 @@ import type { SocialLink } from '@data/types';
 export const personal = {
   name: 'Thomas ROBERT',
   email: 'thomas_3004@hotmail.fr',
-  cvPath: '/cv-thomas-robert.pdf',
+  cvPath: '/thomas-robert-developpeur-fullstack.pdf',
   siteUrl: 'https://thomasrobert.netlify.app/',
   socialLinks: [
     {
